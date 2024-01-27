@@ -1,3 +1,18 @@
 body {
-    background-color: skyblue;
+    background-color: darkcyan;
+}
+.panel {
+    max-width: 50vh;
+    min-height: 50vw;
+}
+a, input {
+    text-decoration: none!important;
+}
+.note-item {
+    background-color: rgba(0,139,139,0.33);
+    transition: 750ms;
+}
+.note-item:hover {
+    background-color: red;
+    cursor: pointer;
 }

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <p>
+    <a href="{{ path('_logout_main') }}"><input type="button" value="Logout" style="background-color: darkcyan;" class="btn ms-1"></a>
+        <span style="float: right; font-size: larger;">
+            Hello, {{ username }}!
+        </span>
+    </p>
+    <br>
+
+    {{ form_errors(noteForm) }}
+
+    {{ form_start(noteForm) }}
+
+    {{ form_label(noteForm.content, 'Create a note') }}
+    {{ form_widget(noteForm.content, {'attr': {'class': 'form-control'}}) }}
+
+
+    {{ form_end(noteForm) }}
+    <br>
+
+    <span>Sort by:
+        <a href="{{ path('index_start_newest') }}" class="btn {{ (currentPage is same as('index_start_newest') ) ? 'disabled' : '' }}"
+           style="background-color: darkcyan;"
+           tabindex="-1" role="button">Newest</a>
+        <a href="{{ path('index_start_oldest') }}" class="btn {{ (currentPage is same as('index_start_oldest') ) ? 'disabled' : '' }}"
+           style="background-color: darkcyan;"
+           tabindex="-1" role="button">Oldest</a>
+    </span>
+
+    <br> <br>
+    {% if activeNotes %}
+    <div class="list-group">
+    {% for note in activeNotes %}
+            <a class="list-group-item list-group-item-action note-item"
+               href="{{ path('note_delete', { 'id': note.id, 'redirectTo': currentPage }) }}">
+                {{ note.content }}
+            </a>
+    {% endfor %}
+    </div>
+    {% else %}
+        <p>You don't have any notes</p>
+    {% endif %}
+
+{% endblock %}

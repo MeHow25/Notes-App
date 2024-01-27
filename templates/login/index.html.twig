@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in{% endblock %}
+
+{% block body %}
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <form action="{{ path('app_login') }}" method="post">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" type="password" id="password" name="_password">
+        </div>
+        <br>
+        <input type="hidden" name="_target_path" value="/index/start">
+        <button type="submit" class="btn" style="background-color: darkcyan;">Login</button>
+    </form>
+    <br>
+    <p>You are not registered?
+        <a href="{{ path('app_register') }}"><input type="button" value="Register" style="background-color: darkcyan;" class="btn ms-1"></a></p>
+{% endblock %}

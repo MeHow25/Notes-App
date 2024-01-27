@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm, {'attr': {'novalidate': 'novalidate'}}) }}
+    <div class="form-group">
+        {{ form_label(registrationForm.username) }}
+        {{ form_widget(registrationForm.username, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(registrationForm.plainPassword.first) }}
+        {{ form_errors(registrationForm.plainPassword.second) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(registrationForm.email) }}
+        {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(registrationForm.plainPassword.first) }}
+        {{ form_widget(registrationForm.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(registrationForm.plainPassword.second) }}
+        {{ form_widget(registrationForm.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <br>
+    <div class="form-check">
+        {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+        {{ form_label(registrationForm.agreeTerms) }}
+    </div>
+    <br>
+    <button type="submit" style="background-color: darkcyan;" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
+    <br>
+    <p>Already have an account?
+        <a href="{{ path('app_login') }}">
+            <input type="button" value="Log in" style="background-color: darkcyan;"
+                   class="btn ms-1"></a></p>
+{% endblock %}
