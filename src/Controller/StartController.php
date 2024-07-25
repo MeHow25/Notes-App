@@ -29,7 +29,7 @@ class StartController extends AbstractController
         $noteToDelete = $entityManager->getRepository(Note::class)->findOneBy(['id' => $id]);
         $activeUser = $this->getUser()->getUserIdentifier();
 
-        if ($noteToDelete->getUser() === $activeUser) {
+        if ($noteToDelete->getUsername() === $activeUser) {
             $noteToDelete->setDeleted(true);
             $entityManager->flush();
         } else {
@@ -59,7 +59,7 @@ class StartController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $note->setDeleted(false);
-            $note->setUser($this->getUser()->getUserIdentifier());
+            $note->setUsername($this->getUser()->getUserIdentifier());
             $note->setContent(
                 $form->get('content')->getData()
             );
@@ -72,7 +72,7 @@ class StartController extends AbstractController
 
         $activeNotes = $entityManager->getRepository(Note::class)->findBy(
             ['deleted' => 0,
-                'user' => $this->getUser()->getUserIdentifier()],
+                'username' => $this->getUser()->getUserIdentifier()],
             ['id' => $sortOrder],
         );
 

@@ -20,7 +20,7 @@ class Note
     private ?bool $deleted = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $user = null;
+    private ?string $username = null;
 
     public function getId(): ?int
     {
@@ -51,14 +51,14 @@ class Note
         return $this;
     }
 
-    public function getUser(): ?string
+    public function getUsername(): ?string
     {
-        return $this->user;
+        return $this->username;
     }
 
-    public function setUser(string $user): static
+    public function setUsername(string $username): static
     {
-        $this->user = $user;
+        $this->username = $username;
 
         return $this;
     }

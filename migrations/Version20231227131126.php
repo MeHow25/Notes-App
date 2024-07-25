@@ -20,12 +20,12 @@ final class Version20231227131126 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE note ADD user VARCHAR(255) NOT NULL, CHANGE deleted deleted TINYINT(1) NOT NULL');
+        $this->addSql('ALTER TABLE note ADD COLUMN "user" VARCHAR(255) NOT NULL, ALTER COLUMN deleted SET NOT NULL');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE note DROP user, CHANGE deleted deleted TINYINT(1) DEFAULT 0 NOT NULL');
+        $this->addSql('ALTER TABLE note DROP COLUMN "user", ALTER COLUMN deleted DROP NOT NULL');
     }
 }

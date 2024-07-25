@@ -13,6 +13,6 @@ a, input {
     transition: 750ms;
 }
 .note-item:hover {
-    background-color: red;
+    background-color: red!important;
     cursor: pointer;
 }
