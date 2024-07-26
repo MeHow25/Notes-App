@@ -1,21 +1,6 @@
 version: '3'
 
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: symfony_app
-    restart: unless-stopped
-    working_dir: /var/www/html
-    volumes:
-      - .:/var/www/html
-    ports:
-      - "9000:9000"
-    environment:
-      APP_ENV: dev
-      DATABASE_URL: postgres://app:!ChangeMe!@database:5432/app
-
   database:
     image: postgres:15-alpine
     container_name: symfony_db
